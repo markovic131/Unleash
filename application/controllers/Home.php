@@ -1,10 +1,10 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
-class Home extends Public_Controller {
+class Home extends Admin_Controller {
 
     public function index()
     {
-        
+
     }
 }
 
