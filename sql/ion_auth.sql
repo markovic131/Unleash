@@ -44,7 +44,7 @@ CREATE TABLE `meta` (
 
 INSERT INTO `meta` (`id`, `user_id`, `first_name`, `last_name`, `company`, `phone`) VALUES
 	('1','1','Admin','AdminLastName','Admin Corp.','0'),
-  ('2','1','User','UserLastName','User Ltd.','0');
+  ('2','2','User','UserLastName','User Ltd.','0');
 
 DROP TABLE IF EXISTS `users`;
 

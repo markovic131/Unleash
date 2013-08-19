@@ -7,8 +7,3 @@
     <p>The corresponding controller for this page is found at:</p>
     <code>application/controllers/admin/Home.php</code>
 </div>
-<style>
-    body {padding-top: 20px;}
-    .header {margin-bottom: 30px}
-    .container {max-width: 940px;}
-</style>

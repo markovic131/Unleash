@@ -5,7 +5,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta name="description" content="">
         <meta name="author" content="">
-        <title>Authorized &middot; Unleash</title>
+        <title>Members Area &middot; Unleash</title>
         <!-- Bootstrap -->
         <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.0-wip/css/bootstrap.min.css">
         <!-- Custom styles-->
@@ -14,20 +14,27 @@
         <link rel="icon" href="/favicon.ico" type="image/x-icon">
     </head>
     <body>
-        <div class="container">
-            <div class="header">
-                <ul class="nav nav-pills pull-right">
-                    <li><a href="/page">Public</a></li>
-                    <li><a href="/user/home">Authorized</a></li>
-                    <li><a href="/admin/home">Admin</a></li>
-                    <?php if(!$this->ion_auth->logged_in()): ?>
-                        <li><a href="/auth/login">Login</a></li>
-                    <?php else: ?>
-                        <li><a href="/auth/logout">Logout</a></li>
-                    <?php endif; ?>
-                </ul>
-                <h3 class="text-muted">Unleash - Authorized</h3>
+        <div class="navbar navbar-inverse navbar-fixed-top">
+            <div class="container">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand" href="#">Unleash</a>
+                </div>
+                <div class="navbar-collapse collapse">
+                    <ul class="nav navbar-nav">
+                        <li><a href="/user/home">Dashboard</a></li>
+                    </ul>
+                    <ul class="nav navbar-nav navbar-right">
+                            <li><a href="/auth/logout">Logout</a></li>
+                    </ul>
+                </div><!--/.nav-collapse -->
             </div>
+        </div>
+        <div class="container">
             <?=$yield?>
         </div>
         <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->

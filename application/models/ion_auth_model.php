@@ -18,11 +18,6 @@
 * Requirements: PHP5 or above
 *
 */
-
-//  CI 2.0 Compatibility
-if(!class_exists('CI_Model')) { class CI_Model extends Model {} }
-
-
 class Ion_auth_model extends CI_Model
 {
 	/**

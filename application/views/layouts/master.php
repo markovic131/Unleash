@@ -16,11 +16,9 @@
         <div class="container">
             <div class="header">
                 <ul class="nav nav-pills pull-right">
-                    <li><a href="/page">Public</a></li>
-                    <li><a href="/user/home">Authorized</a></li>
-                    <li><a href="/admin/home">Admin</a></li>
                     <?php if(!$this->ion_auth->logged_in()): ?>
-                        <li><a href="/auth/login">Login</a></li>
+                        <li><a href="/auth/login">Member Login</a></li>
+                        <li><a href="/auth/login">Admin Login</a></li>
                     <?php else: ?>
                         <li><a href="/auth/logout">Logout</a></li>
                     <?php endif; ?>

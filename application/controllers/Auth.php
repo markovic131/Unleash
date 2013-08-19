@@ -9,24 +9,7 @@ class Auth extends MY_Controller
 
     public function index()
     {
-        // if (!$this->ion_auth->logged_in())
-        // {
-        //     //redirect them to the login page
-        //     redirect('auth/login', 'refresh');
-        // }
-        // elseif (!$this->ion_auth->is_admin())
-        // {
-        //     //redirect them to the home page because they must be an administrator to view this
-        //     redirect($this->config->item('base_url'), 'refresh');
-        // }
-        // else
-        // {
-        //     //set the flash data error message if there is one
-        //     $this->data['message'] = (validation_errors()) ? validation_errors() : $this->session->flashdata('message');
 
-        //     //list the users
-        //     $this->data['users'] = $this->ion_auth->get_users_array();
-        // }
     }
 
     public function login()
@@ -52,7 +35,8 @@ class Auth extends MY_Controller
             { //if the login is successful
                 //redirect them back to the home page
                 $this->session->set_flashdata('message', $this->ion_auth->messages());
-                redirect($this->config->item('base_url'), 'refresh');
+
+                redirect('/', 'refresh');
             }
             else
             { //if the login was un-successful
@@ -83,7 +67,6 @@ class Auth extends MY_Controller
     {
         $this->ion_auth->logout();
 
-        //redirect them back to the page they came from
         redirect($this->config->item('base_url'), 'refresh');
     }
 
@@ -356,28 +339,28 @@ class Auth extends MY_Controller
     //     }
     // }
 
-    private function _get_csrf_nonce()
-    {
-        $this->load->helper('string');
-        $key = random_string('alnum', 8);
-        $value = random_string('alnum', 20);
-        $this->session->set_flashdata('csrfkey', $key);
-        $this->session->set_flashdata('csrfvalue', $value);
+    // private function _get_csrf_nonce()
+    // {
+    //     $this->load->helper('string');
+    //     $key = random_string('alnum', 8);
+    //     $value = random_string('alnum', 20);
+    //     $this->session->set_flashdata('csrfkey', $key);
+    //     $this->session->set_flashdata('csrfvalue', $value);
 
-        return array($key => $value);
-    }
+    //     return array($key => $value);
+    // }
 
-    private function _valid_csrf_nonce()
-    {
-        if ($this->input->post($this->session->flashdata('csrfkey')) !== false AND
-                $this->input->post($this->session->flashdata('csrfkey')) == $this->session->flashdata('csrfvalue'))
-        {
-            return true;
-        }
-        else
-        {
-            return false;
-        }
-    }
+    // private function _valid_csrf_nonce()
+    // {
+    //     if ($this->input->post($this->session->flashdata('csrfkey')) !== false AND
+    //             $this->input->post($this->session->flashdata('csrfkey')) == $this->session->flashdata('csrfvalue'))
+    //     {
+    //         return true;
+    //     }
+    //     else
+    //     {
+    //         return false;
+    //     }
+    // }
 
 }

@@ -1,6 +1,6 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 /**
- * Admin controller
+ * Group Management
  * Accessible only if user is admin.
  *
  * @author Marko Aleksic <iam@markoaleksic.com>
@@ -9,13 +9,18 @@
  * @license https://raw.github.com/psybaron/Unleash/master/LICENSE 
  * @package Unleash
  */
-class Home extends Admin_Controller {
+class Group extends Admin_Controller {
 
     public function index()
     {
+        $this->data['groups'] = $this->ion_auth->get_groups();
+    }
 
+    public function create()
+    {
+        // views/admin/group/create.php
     }
 }
 
-/* End of file admin.php */
-/* Location: ./application/controllers/admin/home.php */
+/* End of file group.php */
+/* Location: ./application/controllers/admin/group.php */
