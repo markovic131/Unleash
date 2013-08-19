@@ -4,21 +4,21 @@
  * @copyright http://www.okvee.net
  */
  
-class MY_Output extends CI_Output {
+class MY_Output extends CI_Output 
+{
      
-     
-    function __construct() {
+    public function __construct() 
+    {
         parent::__construct();
-    }// __construct
-     
-     
+    }
+
     /**
      * Update/serve a cached file
      *
      * @access    public
      * @return    void
      */
-    function _display_cache(&$CFG, &$URI)
+    public function _display_cache(&$CFG, &$URI)
     {
         $cache_path = ($CFG->item('cache_path') == '') ? APPPATH.'cache/' : $CFG->item('cache_path');
  
@@ -75,7 +75,7 @@ class MY_Output extends CI_Output {
         $this->_display(str_replace($match['0'], '', $cache));
         log_message('debug', "Cache file is current. Sending it to browser.");
         return TRUE;
-    }// _display_cache
+    }
      
      
     /**
@@ -84,7 +84,7 @@ class MY_Output extends CI_Output {
      * @access    public
      * @return    void
      */
-    function _write_cache($output)
+    public function _write_cache($output)
     {
         $CI =& get_instance();
         $path = $CI->config->item('cache_path');
@@ -129,7 +129,5 @@ class MY_Output extends CI_Output {
         @chmod($cache_path, FILE_WRITE_MODE);
  
         log_message('debug', "Cache file written: ".$cache_path);
-    }// _write_cache
-     
-     
+    }
 }

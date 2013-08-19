@@ -52,6 +52,11 @@ class MY_Controller extends CI_Controller
      */
     protected $helpers = array();
 
+    /**
+     * A list of libraries to be autoloaded
+     */
+    protected $libraries = array();
+
     /* --------------------------------------------------------------
      * GENERIC METHODS
      * ------------------------------------------------------------ */
@@ -65,7 +70,12 @@ class MY_Controller extends CI_Controller
         parent::__construct();
 
         $this->_load_models();
+        
         $this->_load_helpers();
+
+        $this->_load_libraries();
+
+        //$this->output->enable_profiler(true);
     }
 
     /* --------------------------------------------------------------
@@ -195,6 +205,21 @@ class MY_Controller extends CI_Controller
         foreach ($this->helpers as $helper)
         {
             $this->load->helper($helper);
+        }
+    }
+
+    /* --------------------------------------------------------------
+     * LIBRARY LOADING
+     * ------------------------------------------------------------ */
+
+    /**
+     * Load libraries based on the $this->libraries array
+     */
+    private function _load_libraries()
+    {
+        foreach ($this->libraries as $helper)
+        {
+            $this->load->library($helper);
         }
     }
 }

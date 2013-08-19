@@ -5,11 +5,12 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta name="description" content="">
         <meta name="author" content="">
-        <title>Unleash &middot; CodeIgniter Unleashed.</title>
+        <title>Authorized &middot; Unleash</title>
         <!-- Bootstrap -->
         <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.0-wip/css/bootstrap.min.css">
         <!-- Custom styles-->
         <link rel="stylesheet" href="/css/main.css">
+        <link rel="stylesheet" href="/css/user.css">
         <link rel="icon" href="/favicon.ico" type="image/x-icon">
     </head>
     <body>
@@ -25,7 +26,7 @@
                         <li><a href="/auth/logout">Logout</a></li>
                     <?php endif; ?>
                 </ul>
-                <h3 class="text-muted">Unleash</h3>
+                <h3 class="text-muted">Unleash - Authorized</h3>
             </div>
             <?=$yield?>
         </div>
