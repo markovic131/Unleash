@@ -5,7 +5,7 @@
     <code>application/views/page/index.php</code>
 
     <p>The corresponding controller for this page is found at:</p>
-    <code>application/controllers/Page.php</code>
+    <code>application/controllers/page.php</code>
     <br><br>
     <?php if ($this->ion_auth->logged_in()): ?>
         <p>You can access the <a href="/user/home">Members Area</a>.</p>

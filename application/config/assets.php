@@ -7,6 +7,7 @@
  */
 
 $config['cssFolder'] = '/css';
+
 $config['jsFolder'] = '/js';
 
 $config['public'] = array(

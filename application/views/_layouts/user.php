@@ -5,7 +5,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta name="description" content="">
         <meta name="author" content="">
-        <title>Members Area &middot; Unleash</title>
+        <title>Members Area &middot; <?=config_item('appName')?></title>
         <!-- Styles -->
         <?=$this->assets->loadCss('user')?>
         <link rel="icon" href="/favicon.ico" type="image/x-icon">
@@ -19,7 +19,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                     </button>
-                    <a class="navbar-brand" href="#">Unleash</a>
+                    <a class="navbar-brand" href="/">Unleash</a>
                 </div>
                 <div class="navbar-collapse collapse">
                     <ul class="nav navbar-nav">

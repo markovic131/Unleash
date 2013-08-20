@@ -7,7 +7,7 @@
             <code>application/views/user/home/index.php</code>
 
             <p>The corresponding controller for this page is found at:</p>
-            <code>application/controllers/user/Home.php</code>
+            <code>application/controllers/user/home.php</code>
         </div>
     </div>
 </div>

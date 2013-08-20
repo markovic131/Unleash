@@ -5,5 +5,5 @@
     <code>application/views/admin/home/index.php</code>
 
     <p>The corresponding controller for this page is found at:</p>
-    <code>application/controllers/admin/Home.php</code>
+    <code>application/controllers/admin/home.php</code>
 </div>

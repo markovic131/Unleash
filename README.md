@@ -35,7 +35,8 @@ This might now be what you exactly need, or use, or think is good - hence feel f
 * [Base Model](https://github.com/jamierumbelow/codeigniter-base-model)
 * Automatic views loading - [Base Controller](https://github.com/jamierumbelow/codeigniter-base-controller)
 * Layouts per access area (Public, Authorized, Admin)
-* Boostrap 3.0 Ready - CDN
+* Simple Assets Managnment Library
+* Boostrap 3.0 - CDN
 * jQuery - CDN
 * Phil Sturgeon [CodeIgniter Template](https://github.com/philsturgeon/codeigniter-template) - OPTIONAL
 * [Amazon S3 Library](https://github.com/psugand/CodeIgniter-S3) - OPTIONAL
