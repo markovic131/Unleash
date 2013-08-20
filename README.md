@@ -40,12 +40,6 @@ This might now be what you exactly need, or use, or think is good - hence feel f
 * Phil Sturgeon [CodeIgniter Template](https://github.com/philsturgeon/codeigniter-template) - OPTIONAL
 * [Amazon S3 Library](https://github.com/psugand/CodeIgniter-S3) - OPTIONAL
 
-## DO NOT USE FOR PRODUCTION (YET)
-
-**I WILL SOVLVE THIS ASAP**. 
-
-Issues when cloned into Linux (404 when accessing the public folder)
-
 ## Installation
 
 * Clone the repo into your web server root

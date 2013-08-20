@@ -7,8 +7,7 @@
  */
 
 $config = array(
-        'appName' => 'Unleash',
+        'appName'       => 'Unleash',
         'defaultLayout' => 'default',
-        'loginRoute' => 'auth/login'
+        'loginRoute'    => 'auth/login'
     );
-
