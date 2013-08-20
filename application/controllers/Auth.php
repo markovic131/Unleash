@@ -14,7 +14,7 @@ class Auth extends MY_Controller
 
     public function login()
     {
-        $this->layout = 'layouts/login';
+        $this->layout = LAYOUTS . 'login';
 
         if ($this->ion_auth->logged_in())
         {
@@ -42,7 +42,7 @@ class Auth extends MY_Controller
             { //if the login was un-successful
                 //redirect them back to the login page
                 $this->session->set_flashdata('message', $this->ion_auth->errors());
-                redirect('auth/login', 'refresh'); //use redirects instead of loading views for compatibility with MY_Controller libraries
+                redirect(config_item('loginRoute'), 'refresh'); //use redirects instead of loading views for compatibility with MY_Controller libraries
             }
         }
         else

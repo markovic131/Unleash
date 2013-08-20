@@ -37,6 +37,8 @@ This might now be what you exactly need, or use, or think is good - hence feel f
 * Layouts per access area (Public, Authorized, Admin)
 * Boostrap 3.0 Ready - CDN
 * jQuery - CDN
+* Phil Sturgeon [CodeIgniter Template](https://github.com/philsturgeon/codeigniter-template) - OPTIONAL
+* [Amazon S3 Library](https://github.com/psugand/CodeIgniter-S3) - OPTIONAL
 
 ## DO NOT USE FOR PRODUCTION (YET)
 
@@ -55,7 +57,7 @@ properly define environment
 * Create database and adjust settings accordingly in database.php (both in development and production folders)
 * Import Unleash/sql/ion_auth.sql file into phpMyAdmin
 * Use newly created Virtual Host (eg. unleash.local) to access the app
-* Member Credentials -> user@user.com password: password
+* Member Credentials -> username: user@user.com password: password
 * Admin Credentials -> username: admin@admin.com password: password
 
 ****

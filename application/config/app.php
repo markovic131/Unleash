@@ -6,4 +6,9 @@
  * @package Unleash
  */
 
-$config['appName'] = 'Unleash';
+$config = array(
+        'appName' => 'Unleash',
+        'defaultLayout' => 'default',
+        'loginRoute' => 'auth/login'
+    );
+

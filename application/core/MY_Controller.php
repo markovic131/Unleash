@@ -139,13 +139,13 @@ class MY_Controller extends CI_Controller
             // If we didn't specify the layout, try to guess it
             if (!isset($this->layout))
             {
-                if (file_exists(APPPATH . 'views/layouts/' . $this->router->class . '.php'))
+                if (file_exists(APPPATH . 'views/' . LAYOUTS . $this->router->class . '.php'))
                 {
-                    $layout = 'layouts/' . $this->router->class;
+                    $layout = LAYOUTS . $this->router->class;
                 }
                 else
                 {
-                    $layout = 'layouts/master';
+                    $layout = LAYOUTS . config_item('defaultLayout');
                 }
             }
 

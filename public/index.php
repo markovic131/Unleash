@@ -82,6 +82,16 @@ if (defined('ENVIRONMENT'))
 	$application_folder = '../application';
 
 /*
+ *---------------------------------------------------------------
+ * LAYOUTS FOLDER NAME
+ *---------------------------------------------------------------
+ *
+ * NO TRAILING SLASH!
+ *
+ */
+	$layouts_folder = '_layouts';
+
+/*
  * --------------------------------------------------------------------
  * DEFAULT CONTROLLER
  * --------------------------------------------------------------------
@@ -181,6 +191,9 @@ if (defined('ENVIRONMENT'))
 
 	// Name of the "system folder"
 	define('SYSDIR', trim(strrchr(trim(BASEPATH, '/'), '/'), '/'));
+
+	// Layouts Folder
+	define('LAYOUTS', $layouts_folder . '/');
 
 
 	// The path to the "application" folder

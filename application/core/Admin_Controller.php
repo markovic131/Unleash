@@ -13,10 +13,10 @@ class Admin_Controller extends Authorized_Controller
 
         if(!$this->ion_auth->is_admin())
         {
-            redirect('auth/login');
+            redirect(config_item('loginRoute'));
         }
         
         //Administration layout
-        $this->layout = 'layouts/admin';
+        $this->layout = LAYOUTS . 'admin';
     }
 }

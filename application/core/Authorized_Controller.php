@@ -13,10 +13,10 @@ class Authorized_Controller extends Public_Controller
 
         if(!$this->ion_auth->logged_in())
         {
-            redirect('auth/login');
+            redirect(config_item('loginRoute'));
         }
 
         //Authorized layout
-        $this->layout = 'layouts/user';
+        $this->layout = LAYOUTS . 'user';
     }
 }
