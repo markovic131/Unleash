@@ -5,3 +5,5 @@
  * @author Marko Aleksic <iam@markoaleksic.com>
  * @package Unleash
  */
+
+$config['appName'] = 'Unleash';

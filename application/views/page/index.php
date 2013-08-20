@@ -6,6 +6,13 @@
 
     <p>The corresponding controller for this page is found at:</p>
     <code>application/controllers/Page.php</code>
+    <br><br>
+    <?php if ($this->ion_auth->logged_in()): ?>
+        <p>You can access the <a href="/user/home">Members Area</a>.</p>
+    <?php endif ?>
+     <?php if ($this->ion_auth->is_admin()): ?>
+        <p>You can also access the <a href="/admin/home">Administration Area</a>.</p>
+    <?php endif ?>
 </div>
 <style>
     body {padding-top: 20px;}
