@@ -33,9 +33,9 @@ class User extends Admin_Controller {
             {
                 $additionalData = array(
                         'first_name' => $this->input->post('first_name'),
-                        'last_name' => $this->input->post('last_name'),
-                        'company'   => $this->input->post('company'),
-                        'phone'     => $this->input->post('phone')
+                        'last_name'  => $this->input->post('last_name'),
+                        'company'    => $this->input->post('company'),
+                        'phone'      => $this->input->post('phone')
                     );
 
                 if($this->ion_auth->register($this->input->post('username'), 
@@ -65,13 +65,17 @@ class User extends Admin_Controller {
             {
                 $updateData = array(
                         'first_name' => $this->input->post('first_name'),
-                        'last_name' => $this->input->post('last_name'),
-                        'company'   => $this->input->post('company'),
-                        'phone'     => $this->input->post('phone'),
-                        'email'     => $this->input->post('email'),
-                        'username'  => $this->input->post('username'),
-                        'password'  => $this->input->post('password')
+                        'last_name'  => $this->input->post('last_name'),
+                        'company'    => $this->input->post('company'),
+                        'phone'      => $this->input->post('phone'),
+                        'email'      => $this->input->post('email'),
+                        'username'   => $this->input->post('username')
                     );
+
+                if(strlen($this->input->post('password')))
+                {
+                    $updateData['password'] = $this->input->post('password');
+                }
 
                 if($this->ion_auth->update_user($this->input->post('id'), $updateData))
                 {
