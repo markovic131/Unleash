@@ -26,9 +26,9 @@
                         <li><a href="/user/home">Dashboard</a></li>
                     </ul>
                     <ul class="nav navbar-nav navbar-right">
-                            <li><a href="/auth/logout">Logout</a></li>
+                        <li><a href="<?=config_item('logoutRoute')?>">Logout</a></li>
                     </ul>
-                </div><!--/.nav-collapse -->
+                </div>
             </div>
         </div>
         <div class="container">

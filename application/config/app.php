@@ -5,9 +5,10 @@
  * @author Marko Aleksic <iam@markoaleksic.com>
  * @package Unleash
  */
-
 $config = array(
         'appName'       => 'Unleash',
+        'appVersion'    => 'Version 0.1',
         'defaultLayout' => 'default',
-        'loginRoute'    => 'auth/login'
+        'loginRoute'    => '/auth/login',
+        'logoutRoute'   => '/auth/logout'
     );

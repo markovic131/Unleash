@@ -135,7 +135,7 @@
 	 * default password, 'password', changes to 
 	 * fbaa5e216d163a02ae630ab1a43372635dd374c0 with default salt.
 	 **/
-	$config['store_salt'] = false;
+	$config['store_salt'] = true;
 	
 	/**
 	 * Message Start Delimiter

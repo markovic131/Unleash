@@ -18,7 +18,33 @@ class User extends Admin_Controller {
 
     public function create()
     {
-        // views/admin/user/create.php
+        if($_POST)
+        {
+            $this->form_validation->set_rules('first_name', 'First Name', 'required|xss_clean');
+            $this->form_validation->set_rules('last_name', 'Last Name', 'required|xss_clean');
+            $this->form_validation->set_rules('company', 'Company', 'xss_clean');
+            $this->form_validation->set_rules('phone', 'Phone', 'xss_clean|numeric');
+            $this->form_validation->set_rules('email', 'Email Address', 'required|valid_email');
+            $this->form_validation->set_rules('username', 'Username', 'required|xss_clean');
+            $this->form_validation->set_rules('password', 'Password', 'required|min_length[' . $this->config->item('min_password_length', 'ion_auth') . ']|max_length[' . $this->config->item('max_password_length', 'ion_auth') . ']|matches[password_confirm]');
+            $this->form_validation->set_rules('password_confirm', 'Password Confirmation', 'required');
+
+            if($this->form_validation->run())
+            {
+                $additionalData = array(
+                        'fist_name' => $this->input->post('first_name'),
+                        'last_name' => $this->input->post('last_name'),
+                        'company'   => $this->input->post('company'),
+                        'phone'     => $this->input->post('phone')
+                    );
+
+                if($this->ion_auth->register($this->input->post('username'), 
+                    $this->input->post('password'), $this->input->post('email'), $additionalData))
+                {
+                    redirect('admin/user');
+                }
+            }
+        }
     }
 }
 

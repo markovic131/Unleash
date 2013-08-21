@@ -7,11 +7,6 @@ class Auth extends MY_Controller
         parent::__construct();
     }
 
-    public function index()
-    {
-
-    }
-
     public function login()
     {
         $this->layout = LAYOUTS . 'login';

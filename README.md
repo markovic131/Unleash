@@ -1,7 +1,7 @@
 Unleash
 =======
 
-**ALPHA STAGE - DEVELOPMENT IN PROGRESS**
+**DEVELOPMENT IN PROGRESS**
 
 CodeIgniter Unleashed.
 
@@ -32,6 +32,7 @@ This might now be what you exactly need, or use, or think is good - hence feel f
 * Public Area (accessible to all)
 * Memebers Area (normal users backend)
 * Administrators Area (admin backend)
+* Managing Users and Roles (CRUD)
 * [Base Model](https://github.com/jamierumbelow/codeigniter-base-model)
 * Automatic views loading - [Base Controller](https://github.com/jamierumbelow/codeigniter-base-controller)
 * Layouts per access area (Public, Authorized, Admin)
