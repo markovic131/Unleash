@@ -27,6 +27,7 @@ This might now be what you exactly need, or use, or think is good - hence feel f
 * Environment specific config files loading
 * Global application config file
 * [Native autoload of Core classes](http://philsturgeon.co.uk/blog/2010/02/CodeIgniter-Base-Classes-Keeping-it-DRY)
+* Model Autoloading
 * [Ion_Auth 2](https://github.com/benedmunds/CodeIgniter-Ion-Auth)
 * Public, Authorized and Admin Core Controllers
 * Public Area (accessible to all)

@@ -6,7 +6,7 @@
  * @author Marko Aleksic <iam@markoaleksic.com>
  * @copyright Copyright (c) 2013 Marko Aleksic.
  * @link https://github.com/psybaron/Unleash
- * @license https://raw.github.com/psybaron/Unleash/master/LICENSE 
+ * @license https://raw.github.com/psybaron/Unleash/master/LICENSE
  * @package Unleash
  */
 class Auth extends MY_Controller
@@ -26,12 +26,12 @@ class Auth extends MY_Controller
         if ($this->form_validation->run())
         {
             if ($this->ion_auth->login($this->input->post('email'), $this->input->post('password')))
-            { 
+            {
                 $this->session->set_flashdata('message', $this->ion_auth->messages());
                 redirect('/', 'refresh');
             }
             else
-            { 
+            {
                 $this->session->set_flashdata('message', $this->ion_auth->errors());
                 redirect(config_item('loginRoute'), 'refresh');
             }

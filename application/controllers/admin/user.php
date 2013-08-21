@@ -6,11 +6,11 @@
  * @author Marko Aleksic <iam@markoaleksic.com>
  * @copyright Copyright (c) 2013 Marko Aleksic.
  * @link https://github.com/psybaron/Unleash
- * @license https://raw.github.com/psybaron/Unleash/master/LICENSE 
+ * @license https://raw.github.com/psybaron/Unleash/master/LICENSE
  * @package Unleash
  */
-class User extends Admin_Controller {
-
+class User extends Admin_Controller
+{
     public function index()
     {
         $this->data['users'] = $this->ion_auth->get_users();
@@ -36,7 +36,7 @@ class User extends Admin_Controller {
                     'phone'      => $this->input->post('phone')
                 );
 
-            if($this->ion_auth->register($this->input->post('username'), 
+            if($this->ion_auth->register($this->input->post('username'),
                 $this->input->post('password'), $this->input->post('email'), $additionalData))
             {
                 $this->flash->success('Successfully created new record.');
@@ -81,10 +81,10 @@ class User extends Admin_Controller {
 
         $this->data['user'] = $this->ion_auth->get_user($id);
 
-        if(!$this->data['user']) 
+        if(!$this->data['user'])
         {
             show_404();
-        } 
+        }
     }
 
     public function delete($id = false)

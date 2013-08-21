@@ -361,7 +361,7 @@ $config['proxy_ips'] = '';
 | -------------------------------------------------------------------
 |  Native Auto-load
 | -------------------------------------------------------------------
-| 
+|
 | Nothing to do with config/autoload.php, this allows PHP autoload to work
 | for base controllers and some third-party libraries.
 |
@@ -371,6 +371,11 @@ function __autoload($class)
     if(strpos($class, 'CI_') !== 0)
     {
         @include_once( APPPATH . 'core/'. $class . EXT );
+    }
+
+    if (file_exists(APPPATH . 'models/' . strtolower($class) . EXT))
+    {
+        @include_once(APPPATH . 'models/' . strtolower($class) . EXT);
     }
 }
 

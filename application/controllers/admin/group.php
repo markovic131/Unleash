@@ -6,14 +6,24 @@
  * @author Marko Aleksic <iam@markoaleksic.com>
  * @copyright Copyright (c) 2013 Marko Aleksic.
  * @link https://github.com/psybaron/Unleash
- * @license https://raw.github.com/psybaron/Unleash/master/LICENSE 
+ * @license https://raw.github.com/psybaron/Unleash/master/LICENSE
  * @package Unleash
  */
-class Group extends Admin_Controller {
-    
+class Group extends Admin_Controller
+{
+
+    protected $resource;
+
+    public function __construct()
+    {
+        parent::__construct();
+
+        $this->resource = new Group_Model();
+    }
+
     public function index()
     {
-        $this->data['groups'] = $this->ion_auth->get_groups();
+        $this->data['groups'] = $this->resource->get_all();
     }
 
     public function create()
@@ -28,7 +38,7 @@ class Group extends Admin_Controller {
                     'description' => $this->input->post('description')
                 );
 
-            if($this->group->insert($insertData))
+            if($this->resource->insert($insertData))
             {
                 $this->flash->success('Successfully created new record.');
                 redirect('admin/group');
@@ -48,26 +58,26 @@ class Group extends Admin_Controller {
                     'description' => $this->input->post('description')
                 );
 
-            if($this->group->update($this->input->post('id'), $updateData))
+            if($this->resource->update($this->input->post('id'), $updateData))
             {
                 $this->flash->success('Successfully updated the record.');
                 redirect('admin/group');
             }
         }
 
-        $this->data['group'] = $this->group->get($id);
+        $this->data['group'] = $this->resource->get($id);
 
-        if(!$this->data['group']) 
+        if(!$this->data['group'])
         {
             show_404();
-        } 
+        }
     }
 
     public function delete($id = false)
     {
-        if($this->group->get($id))
+        if($this->resource->get($id))
         {
-            $this->group->delete($id);
+            $this->resource->delete($id);
             $this->flash->success('Successfully deleted the record.');
             redirect('admin/group');
         }

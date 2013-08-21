@@ -6,7 +6,7 @@
  * @author Marko Aleksic <iam@markoaleksic.com>
  * @copyright Copyright (c) 2013 Marko Aleksic.
  * @link https://github.com/psybaron/Unleash
- * @license https://raw.github.com/psybaron/Unleash/master/LICENSE 
+ * @license https://raw.github.com/psybaron/Unleash/master/LICENSE
  * @package Unleash
  */
 class Assets
@@ -42,14 +42,14 @@ class Assets
 
         $out = '';
 
-        foreach ($CdnJavaScripts as $key => $value) 
+        foreach ($CdnJavaScripts as $key => $value)
         {
             $out .= '<script src="'.$value.'" async></script>'."\n";
         }
 
         $localJavaScripts = static::$config[$type]['js'];
 
-        foreach ($localJavaScripts as $key => $value) 
+        foreach ($localJavaScripts as $key => $value)
         {
             $out .= '<script src="' . static::$config['jsFolder'] . '/' . $value . '" async></script>'."\n";
         }
@@ -63,14 +63,14 @@ class Assets
 
         $out = '';
 
-        foreach ($CdnStyles as $key => $value) 
+        foreach ($CdnStyles as $key => $value)
         {
             $out .= '<link href="'.$value.'" rel="stylesheet">'."\n";
         }
 
         $localStyles = static::$config[$type]['css'];
 
-        foreach ($localStyles as $key => $value) 
+        foreach ($localStyles as $key => $value)
         {
             $out .= '<link href="' . static::$config['cssFolder'] . '/' . $value . '" rel="stylesheet">'."\n";
         }

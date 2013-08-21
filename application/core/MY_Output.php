@@ -3,11 +3,10 @@
  * @author vee
  * @copyright http://www.okvee.net
  */
- 
-class MY_Output extends CI_Output 
+
+class MY_Output extends CI_Output
 {
-     
-    public function __construct() 
+    public function __construct()
     {
         parent::__construct();
     }
@@ -21,7 +20,7 @@ class MY_Output extends CI_Output
     public function _display_cache(&$CFG, &$URI)
     {
         $cache_path = ($CFG->item('cache_path') == '') ? APPPATH.'cache/' : $CFG->item('cache_path');
- 
+
         // Build the file path.  The file name is an MD5 hash of the full URI
         $uri =    $CFG->item('base_url').
                 $CFG->item('index_page').
@@ -30,36 +29,36 @@ class MY_Output extends CI_Output
         $querystrings = $_SERVER['QUERY_STRING'];
         if ( $querystrings != null ) {$querystrings = "?".$querystrings;}
         $uri = $uri.$querystrings;
- 
+
         $filepath = $cache_path.md5($uri);
- 
+
         if ( ! @file_exists($filepath))
         {
             return FALSE;
         }
- 
+
         if ( ! $fp = @fopen($filepath, FOPEN_READ))
         {
             return FALSE;
         }
- 
+
         flock($fp, LOCK_SH);
- 
+
         $cache = '';
         if (filesize($filepath) > 0)
         {
             $cache = fread($fp, filesize($filepath));
         }
- 
+
         flock($fp, LOCK_UN);
         fclose($fp);
- 
+
         // Strip out the embedded timestamp
         if ( ! preg_match("/(\d+TS--->)/", $cache, $match))
         {
             return FALSE;
         }
- 
+
         // Has the file expired? If so we'll delete it.
         if (time() >= trim(str_replace('TS--->', '', $match['1'])))
         {
@@ -70,14 +69,14 @@ class MY_Output extends CI_Output
                 return FALSE;
             }
         }
- 
+
         // Display the cache
         $this->_display(str_replace($match['0'], '', $cache));
         log_message('debug', "Cache file is current. Sending it to browser.");
         return TRUE;
     }
-     
-     
+
+
     /**
      * Write a Cache File
      *
@@ -88,15 +87,15 @@ class MY_Output extends CI_Output
     {
         $CI =& get_instance();
         $path = $CI->config->item('cache_path');
- 
+
         $cache_path = ($path == '') ? APPPATH.'cache/' : $path;
- 
+
         if ( ! is_dir($cache_path) OR ! is_really_writable($cache_path))
         {
             log_message('error', "Unable to write cache file: ".$cache_path);
             return;
         }
- 
+
         $uri =    $CI->config->item('base_url').
                 $CI->config->item('index_page').
                 $CI->uri->uri_string();
@@ -104,17 +103,17 @@ class MY_Output extends CI_Output
         $querystrings = $_SERVER['QUERY_STRING'];
         if ( $querystrings != null ) {$querystrings = "?".$querystrings;}
         $uri = $uri.$querystrings;
- 
+
         $cache_path .= md5($uri);
- 
+
         if ( ! $fp = @fopen($cache_path, FOPEN_WRITE_CREATE_DESTRUCTIVE))
         {
             log_message('error', "Unable to write cache file: ".$cache_path);
             return;
         }
- 
+
         $expire = time() + ($this->cache_expiration * 60);
- 
+
         if (flock($fp, LOCK_EX))
         {
             fwrite($fp, $expire.'TS--->'.$output);
@@ -127,7 +126,7 @@ class MY_Output extends CI_Output
         }
         fclose($fp);
         @chmod($cache_path, FILE_WRITE_MODE);
- 
+
         log_message('debug', "Cache file written: ".$cache_path);
     }
 }
