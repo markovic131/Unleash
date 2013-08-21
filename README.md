@@ -36,6 +36,7 @@ This might now be what you exactly need, or use, or think is good - hence feel f
 * [Base Model](https://github.com/jamierumbelow/codeigniter-base-model)
 * Automatic views loading - [Base Controller](https://github.com/jamierumbelow/codeigniter-base-controller)
 * Layouts per access area (Public, Authorized, Admin)
+* Simple Flash notifications Library
 * Simple Assets Managnment Library
 * Boostrap 3.0 - CDN
 * jQuery - CDN

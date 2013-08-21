@@ -51,7 +51,8 @@ $config['admin'] = array(
         'bootstrap' => '//netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js',
         ),
     'js' => array(
-        'app'       => 'app.js'
+        'app'       => 'app.js',
+        'admin-js'  => 'admin.js'
         ),
     'css-cdn' => array(
         'bootstrap'    => '//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.no-icons.min.css',

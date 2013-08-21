@@ -15,8 +15,14 @@ class Admin_Controller extends Authorized_Controller
         {
             redirect(config_item('loginRoute'));
         }
+
+        //Load administration specific models
+        $this->load->model('Group_model','group');
+
+        //Load administration specific libraries
+        $this->load->library('flash');
         
-        //Administration layout
+        //Administration default layout
         $this->layout = LAYOUTS . 'admin';
     }
 }

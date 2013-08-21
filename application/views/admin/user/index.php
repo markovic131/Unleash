@@ -1,7 +1,13 @@
 <div class="row">
     <div class="col-md-12">
-        <h1>Users <a href="/admin/user/create" class="btn btn-primary pull-right">Create User</a></h1>
-        <hr>
+        <div class="page-header">
+            <h1>Users <a href="/admin/user/create" class="btn btn-primary pull-right">Create User</a></h1>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-12">
+        <?=$this->flash->display()?>
         <table class="table">
             <thead>
                 <tr>
@@ -10,6 +16,7 @@
                     <th>Company</th>
                     <th>Email</th>
                     <th>Group</th>
+                    <th colspan="2">&nbsp;</th>
                 </tr>
             </thead>
             <tbody>
@@ -20,6 +27,8 @@
                     <td><?=$user->company?></td>
                     <td><?=$user->email?></td>
                     <td><?=$user->group_description?></td>
+                    <td><a href="/admin/user/edit/<?=$user->id?>">Edit</a></td>
+                    <td><a href="/admin/user/delete/<?=$user->id?>" onclick="return confirmDelete();">Delete</a></td>
                 </tr>
             <?php endforeach ?>
             </tbody>

@@ -12,17 +12,6 @@
     </head>
     <body>
         <div class="container">
-            <div class="header">
-                <ul class="nav nav-pills pull-right">
-                    <?php if(!$this->ion_auth->logged_in()): ?>
-                        <li><a href="<?=config_item('loginRoute')?>">Member Login</a></li>
-                        <li><a href="<?=config_item('loginRoute')?>">Admin Login</a></li>
-                    <?php else: ?>
-                        <li><a href="<?=config_item('logoutRoute')?>">Logout</a></li>
-                    <?php endif; ?>
-                </ul>
-                <h3 class="text-muted">Unleash</h3>
-            </div>
             <?=$yield?>
         </div>
         <!-- JavaScript -->

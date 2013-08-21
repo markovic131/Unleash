@@ -10,7 +10,7 @@
  * @package Unleash
  */
 class Group extends Admin_Controller {
-
+    
     public function index()
     {
         $this->data['groups'] = $this->ion_auth->get_groups();
@@ -18,7 +18,67 @@ class Group extends Admin_Controller {
 
     public function create()
     {
-        // views/admin/group/create.php
+        if($_POST)
+        {
+            $this->form_validation->set_rules('name', 'Group Name', 'required|xss_clean');
+            $this->form_validation->set_rules('description', 'Description', 'required|xss_clean');
+
+            if($this->form_validation->run())
+            {
+                $insertData = array(
+                        'name'        => $this->input->post('name'),
+                        'description' => $this->input->post('description')
+                    );
+
+                if($this->group->insert($insertData))
+                {
+                    $this->flash->success('Successfully created new record.');
+                    redirect('admin/group');
+                }
+            }
+        }
+    }
+
+    public function edit($id = false)
+    {
+        if($_POST)
+        {
+            $this->form_validation->set_rules('name', 'Group Name', 'required|xss_clean');
+            $this->form_validation->set_rules('description', 'Description', 'required|xss_clean');
+
+            if($this->form_validation->run())
+            {
+                $updateData = array(
+                        'name'        => $this->input->post('name'),
+                        'description' => $this->input->post('description')
+                    );
+
+                if($this->group->update($this->input->post('id'), $updateData))
+                {
+                    $this->flash->success('Successfully updated the record.');
+                    redirect('admin/group');
+                }
+            }
+        }
+
+        $this->data['group'] = $this->group->get($id);
+
+        if(!$this->data['group']) 
+        {
+            show_404();
+        } 
+    }
+
+    public function delete($id = false)
+    {
+        if($this->group->get($id))
+        {
+            $this->group->delete($id);
+            $this->flash->success('Successfully deleted the record.');
+            redirect('admin/group');
+        }
+
+        show_404();
     }
 }
 
