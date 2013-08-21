@@ -6,11 +6,14 @@ AddType application/x-woff .woff
 AddType application/vnd.ms-fontobject .eot
 AddType application/octet-stream .otf .ttf
 
-RewriteEngine On
-RewriteRule ^(application) - [F,L]
-RewriteCond %{REQUEST_FILENAME} !-f
-RewriteCond %{REQUEST_FILENAME} !-d
-RewriteRule .* index.php/$0 [PT,L]
+<IfModule mod_rewrite.c>
+    Options -MultiViews
+    RewriteEngine On
+
+    RewriteCond %{REQUEST_FILENAME} !-d
+    RewriteCond %{REQUEST_FILENAME} !-f
+    RewriteRule ^ index.php [L]
+</IfModule>
 
 # --------------------------------------------------------------------------
 

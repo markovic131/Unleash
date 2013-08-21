@@ -18,46 +18,40 @@ class Group extends Admin_Controller {
 
     public function create()
     {
-        if($_POST)
+        $this->form_validation->set_rules('name', 'Group Name', 'required|xss_clean');
+        $this->form_validation->set_rules('description', 'Description', 'required|xss_clean');
+
+        if($this->form_validation->run())
         {
-            $this->form_validation->set_rules('name', 'Group Name', 'required|xss_clean');
-            $this->form_validation->set_rules('description', 'Description', 'required|xss_clean');
+            $insertData = array(
+                    'name'        => $this->input->post('name'),
+                    'description' => $this->input->post('description')
+                );
 
-            if($this->form_validation->run())
+            if($this->group->insert($insertData))
             {
-                $insertData = array(
-                        'name'        => $this->input->post('name'),
-                        'description' => $this->input->post('description')
-                    );
-
-                if($this->group->insert($insertData))
-                {
-                    $this->flash->success('Successfully created new record.');
-                    redirect('admin/group');
-                }
+                $this->flash->success('Successfully created new record.');
+                redirect('admin/group');
             }
         }
     }
 
     public function edit($id = false)
     {
-        if($_POST)
+        $this->form_validation->set_rules('name', 'Group Name', 'required|xss_clean');
+        $this->form_validation->set_rules('description', 'Description', 'required|xss_clean');
+
+        if($this->form_validation->run())
         {
-            $this->form_validation->set_rules('name', 'Group Name', 'required|xss_clean');
-            $this->form_validation->set_rules('description', 'Description', 'required|xss_clean');
+            $updateData = array(
+                    'name'        => $this->input->post('name'),
+                    'description' => $this->input->post('description')
+                );
 
-            if($this->form_validation->run())
+            if($this->group->update($this->input->post('id'), $updateData))
             {
-                $updateData = array(
-                        'name'        => $this->input->post('name'),
-                        'description' => $this->input->post('description')
-                    );
-
-                if($this->group->update($this->input->post('id'), $updateData))
-                {
-                    $this->flash->success('Successfully updated the record.');
-                    redirect('admin/group');
-                }
+                $this->flash->success('Successfully updated the record.');
+                redirect('admin/group');
             }
         }
 

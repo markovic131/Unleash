@@ -18,70 +18,64 @@ class User extends Admin_Controller {
 
     public function create()
     {
-        if($_POST)
+        $this->form_validation->set_rules('first_name', 'First Name', 'required|xss_clean');
+        $this->form_validation->set_rules('last_name', 'Last Name', 'required|xss_clean');
+        $this->form_validation->set_rules('company', 'Company', 'xss_clean');
+        $this->form_validation->set_rules('phone', 'Phone', 'xss_clean|numeric');
+        $this->form_validation->set_rules('email', 'Email Address', 'required|valid_email');
+        $this->form_validation->set_rules('username', 'Username', 'required|xss_clean');
+        $this->form_validation->set_rules('password', 'Password', 'required|min_length[' . $this->config->item('min_password_length', 'ion_auth') . ']|max_length[' . $this->config->item('max_password_length', 'ion_auth') . ']|matches[password_confirm]');
+        $this->form_validation->set_rules('password_confirm', 'Password Confirmation', 'required');
+
+        if($this->form_validation->run())
         {
-            $this->form_validation->set_rules('first_name', 'First Name', 'required|xss_clean');
-            $this->form_validation->set_rules('last_name', 'Last Name', 'required|xss_clean');
-            $this->form_validation->set_rules('company', 'Company', 'xss_clean');
-            $this->form_validation->set_rules('phone', 'Phone', 'xss_clean|numeric');
-            $this->form_validation->set_rules('email', 'Email Address', 'required|valid_email');
-            $this->form_validation->set_rules('username', 'Username', 'required|xss_clean');
-            $this->form_validation->set_rules('password', 'Password', 'required|min_length[' . $this->config->item('min_password_length', 'ion_auth') . ']|max_length[' . $this->config->item('max_password_length', 'ion_auth') . ']|matches[password_confirm]');
-            $this->form_validation->set_rules('password_confirm', 'Password Confirmation', 'required');
+            $additionalData = array(
+                    'first_name' => $this->input->post('first_name'),
+                    'last_name'  => $this->input->post('last_name'),
+                    'company'    => $this->input->post('company'),
+                    'phone'      => $this->input->post('phone')
+                );
 
-            if($this->form_validation->run())
+            if($this->ion_auth->register($this->input->post('username'), 
+                $this->input->post('password'), $this->input->post('email'), $additionalData))
             {
-                $additionalData = array(
-                        'first_name' => $this->input->post('first_name'),
-                        'last_name'  => $this->input->post('last_name'),
-                        'company'    => $this->input->post('company'),
-                        'phone'      => $this->input->post('phone')
-                    );
-
-                if($this->ion_auth->register($this->input->post('username'), 
-                    $this->input->post('password'), $this->input->post('email'), $additionalData))
-                {
-                    $this->flash->success('Successfully created new record.');
-                    redirect('admin/user');
-                }
+                $this->flash->success('Successfully created new record.');
+                redirect('admin/user');
             }
         }
     }
 
     public function edit($id = false)
     {
-        if($_POST)
+        $this->form_validation->set_rules('first_name', 'First Name', 'required|xss_clean');
+        $this->form_validation->set_rules('last_name', 'Last Name', 'required|xss_clean');
+        $this->form_validation->set_rules('company', 'Company', 'xss_clean');
+        $this->form_validation->set_rules('phone', 'Phone', 'xss_clean|numeric');
+        $this->form_validation->set_rules('email', 'Email Address', 'required|valid_email');
+        $this->form_validation->set_rules('username', 'Username', 'required|xss_clean');
+        $this->form_validation->set_rules('password', 'Password', 'min_length[' . $this->config->item('min_password_length', 'ion_auth') . ']|max_length[' . $this->config->item('max_password_length', 'ion_auth') . ']|matches[password_confirm]');
+        $this->form_validation->set_rules('password_confirm', 'Password Confirmation', '');
+
+        if($this->form_validation->run())
         {
-            $this->form_validation->set_rules('first_name', 'First Name', 'required|xss_clean');
-            $this->form_validation->set_rules('last_name', 'Last Name', 'required|xss_clean');
-            $this->form_validation->set_rules('company', 'Company', 'xss_clean');
-            $this->form_validation->set_rules('phone', 'Phone', 'xss_clean|numeric');
-            $this->form_validation->set_rules('email', 'Email Address', 'required|valid_email');
-            $this->form_validation->set_rules('username', 'Username', 'required|xss_clean');
-            $this->form_validation->set_rules('password', 'Password', 'min_length[' . $this->config->item('min_password_length', 'ion_auth') . ']|max_length[' . $this->config->item('max_password_length', 'ion_auth') . ']|matches[password_confirm]');
-            $this->form_validation->set_rules('password_confirm', 'Password Confirmation', '');
+            $updateData = array(
+                    'first_name' => $this->input->post('first_name'),
+                    'last_name'  => $this->input->post('last_name'),
+                    'company'    => $this->input->post('company'),
+                    'phone'      => $this->input->post('phone'),
+                    'email'      => $this->input->post('email'),
+                    'username'   => $this->input->post('username')
+                );
 
-            if($this->form_validation->run())
+            if(strlen($this->input->post('password')))
             {
-                $updateData = array(
-                        'first_name' => $this->input->post('first_name'),
-                        'last_name'  => $this->input->post('last_name'),
-                        'company'    => $this->input->post('company'),
-                        'phone'      => $this->input->post('phone'),
-                        'email'      => $this->input->post('email'),
-                        'username'   => $this->input->post('username')
-                    );
+                $updateData['password'] = $this->input->post('password');
+            }
 
-                if(strlen($this->input->post('password')))
-                {
-                    $updateData['password'] = $this->input->post('password');
-                }
-
-                if($this->ion_auth->update_user($this->input->post('id'), $updateData))
-                {
-                    $this->flash->success('Successfully updated the record.');
-                    redirect('admin/user');
-                }
+            if($this->ion_auth->update_user($this->input->post('id'), $updateData))
+            {
+                $this->flash->success('Successfully updated the record.');
+                redirect('admin/user');
             }
         }
 
