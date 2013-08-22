@@ -8,18 +8,23 @@ CodeIgniter Unleashed.
 Application skeleton for rapid development with [CodeIgniter](http://ellislab.com/codeigniter) v2.1.4
 
 
-This is **NOT** a ready application, and is intended for developers to kickstart new projects
-without doing redundant integration of usual classes, libraries and services.
+This is **NOT** a ready application and does not serve any purpose.
+Is intended for developers to kickstart new projects and cut dozen of hours doing repetitive configuration and integration of classes, libraries and services on top of "stock" CodeIgniter installation.
 
 
 I couldn't find good and properly setup "CodeIgniter Starter Kit", so I created
 this. I found myself many times doing the same things over and over when starting a new
-project in CI - so I put together this app sceleton with all the customization I usually do on top of CI.
+project in CI - so I put together this app sceleton with all the customization I usually do before acutally writing specific code.
 
-This might now be what you exactly need, or use, or think is good - hence feel free to customize it to your liking, remove stuff or whatever.
+This might now be what you exactly need, or use, or think is good - hence customize it to your liking, add/remove stuff or do
+whatever you wanna do.
 
 **PULL REQUESTS ARE WELCOMED**
 
+## [Demo](http://unleash.markoaleksic.com/)
+
+* **User Access** username: user@user.com | password: password
+* **Admin Access** username: admin@admin.com | password: password
 
 ## Features
 
@@ -36,13 +41,13 @@ This might now be what you exactly need, or use, or think is good - hence feel f
 * Managing Users and Roles (CRUD)
 * [Base Model](https://github.com/jamierumbelow/codeigniter-base-model)
 * Automatic views loading - [Base Controller](https://github.com/jamierumbelow/codeigniter-base-controller)
+* [Amazon S3 Library](https://github.com/psugand/CodeIgniter-S3)
+* Phil Sturgeon [CodeIgniter Template](https://github.com/philsturgeon/codeigniter-template) - OPTIONAL
 * Layouts per access area (Public, Authorized, Admin)
 * Simple Flash notifications Library
 * Simple Assets Managnment Library
 * Boostrap 3.0 - CDN
 * jQuery - CDN
-* Phil Sturgeon [CodeIgniter Template](https://github.com/philsturgeon/codeigniter-template) - OPTIONAL
-* [Amazon S3 Library](https://github.com/psugand/CodeIgniter-S3) - OPTIONAL
 
 ## Installation
 
@@ -55,8 +60,8 @@ properly define environment
 * Create database and adjust settings accordingly in database.php (both in development and production folders)
 * Import Unleash/sql/ion_auth.sql file into phpMyAdmin
 * Use newly created Virtual Host (eg. unleash.local) to access the app
-* Member Credentials -> username: user@user.com password: password
-* Admin Credentials -> username: admin@admin.com password: password
+* User Access -> username: user@user.com password: password
+* Admin Access -> username: admin@admin.com password: password
 
 ****
 
