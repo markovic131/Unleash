@@ -47,6 +47,8 @@ class User extends Admin_Controller
 
     public function edit($id = false)
     {
+        $this->data['user'] = $this->ion_auth->get_user($id);
+
         $this->form_validation->set_rules('first_name', 'First Name', 'required|xss_clean');
         $this->form_validation->set_rules('last_name', 'Last Name', 'required|xss_clean');
         $this->form_validation->set_rules('company', 'Company', 'xss_clean');
@@ -56,7 +58,7 @@ class User extends Admin_Controller
         $this->form_validation->set_rules('password', 'Password', 'min_length[' . $this->config->item('min_password_length', 'ion_auth') . ']|max_length[' . $this->config->item('max_password_length', 'ion_auth') . ']|matches[password_confirm]');
         $this->form_validation->set_rules('password_confirm', 'Password Confirmation', '');
 
-        if($this->form_validation->run())
+        if($this->form_validation->run() AND ($this->data['user']->group != $this->ion_auth->get_config('admin_group')))
         {
             $updateData = array(
                     'first_name' => $this->input->post('first_name'),
@@ -79,9 +81,7 @@ class User extends Admin_Controller
             }
         }
 
-        $this->data['user'] = $this->ion_auth->get_user($id);
-
-        if(!$this->data['user'])
+        if(!$this->data['user'] OR ($this->data['user']->group == $this->ion_auth->get_config('admin_group')))
         {
             show_404();
         }
@@ -89,11 +89,14 @@ class User extends Admin_Controller
 
     public function delete($id = false)
     {
-        if($this->ion_auth->get_user($id))
+        if($user = $this->ion_auth->get_user($id))
         {
-            $this->ion_auth->delete_user($id);
-            $this->flash->success('Successfully deleted the record.');
-            redirect('admin/user');
+            if($user->group != $this->ion_auth->get_config('admin_group'))
+            {
+                $this->ion_auth->delete_user($id);
+                $this->flash->success('Successfully deleted the record.');
+                redirect('admin/user');
+            }
         }
 
         show_404();

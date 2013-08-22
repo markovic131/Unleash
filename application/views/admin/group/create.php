@@ -4,9 +4,12 @@
             <h2>Create Group</h2>
         </div>
     </div>
-</div> 
-<div class="row">
     <div class="col-md-4">
+        <?php if (validation_errors()): ?>
+            <div class="alert alert-danger">
+                <?php echo validation_errors() ?>
+            </div>
+        <?php endif ?>
         <form role="form" method="post">
             <div class="form-group">
                 <label for="groupName">Group Name</label>
@@ -19,9 +22,4 @@
             <button type="submit" class="btn btn-default">Save</button>
         </form>
     </div>
-    <?php if (validation_errors()): ?>
-    <div class="col-md-6 alert alert-danger">
-        <?php echo validation_errors() ?>
-    </div>
-    <?php endif ?>
 </div>

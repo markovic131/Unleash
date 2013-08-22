@@ -4,10 +4,13 @@
             <h2>Create User</h2>
         </div>
     </div>
-</div> 
-<div class="row">
     <div class="col-md-4">
         <form role="form" method="post">
+            <?php if (validation_errors()): ?>
+                <div class="alert alert-danger">
+                    <?php echo validation_errors() ?>
+                </div>
+            <?php endif ?>
             <div class="form-group">
                 <label for="firstName">First Name</label>
                 <?php echo form_input('first_name',set_value('first_name'),'class="form-control" placeholder="First Name" id="firstName"') ?>
@@ -43,9 +46,4 @@
             <button type="submit" class="btn btn-default">Save</button>
         </form>
     </div>
-    <?php if (validation_errors()): ?>
-    <div class="col-md-6 alert alert-danger">
-        <?php echo validation_errors() ?>
-    </div>
-    <?php endif ?>
 </div>

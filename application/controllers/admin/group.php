@@ -11,7 +11,6 @@
  */
 class Group extends Admin_Controller
 {
-
     protected $resource;
 
     public function __construct()
@@ -48,10 +47,12 @@ class Group extends Admin_Controller
 
     public function edit($id = false)
     {
+        $this->data['group'] = $this->resource->get($id);
+
         $this->form_validation->set_rules('name', 'Group Name', 'required|xss_clean');
         $this->form_validation->set_rules('description', 'Description', 'required|xss_clean');
 
-        if($this->form_validation->run())
+        if($this->form_validation->run() AND ($this->data['group']->name != $this->ion_auth->get_config('admin_group')))
         {
             $updateData = array(
                     'name'        => $this->input->post('name'),
@@ -65,9 +66,7 @@ class Group extends Admin_Controller
             }
         }
 
-        $this->data['group'] = $this->resource->get($id);
-
-        if(!$this->data['group'])
+        if(!$this->data['group'] OR $this->data['group']->name == $this->ion_auth->get_config('admin_group'))
         {
             show_404();
         }
@@ -75,11 +74,14 @@ class Group extends Admin_Controller
 
     public function delete($id = false)
     {
-        if($this->resource->get($id))
+        if($group = $this->resource->get($id))
         {
-            $this->resource->delete($id);
-            $this->flash->success('Successfully deleted the record.');
-            redirect('admin/group');
+            if($group->name != $this->ion_auth->get_config('admin_group'))
+            {
+                $this->resource->delete($id);
+                $this->flash->success('Successfully deleted the record.');
+                redirect('admin/group');
+            }
         }
 
         show_404();

@@ -4,9 +4,12 @@
             <h2>Edit User</h2>
         </div>
     </div>
-</div> 
-<div class="row">
     <div class="col-md-4">
+        <?php if (validation_errors()): ?>
+            <div class="alert alert-danger">
+                <?php echo validation_errors() ?>
+            </div>
+        <?php endif ?>
         <form role="form" method="post" action="/admin/user/edit/<?=$user->id?>">
             <div class="form-group">
                 <label for="firstName">First Name</label>
@@ -44,9 +47,4 @@
             <input type="hidden" name="id" value="<?=$user->id?>">
         </form>
     </div>
-    <?php if (validation_errors()): ?>
-    <div class="col-md-6 alert alert-danger">
-        <?php echo validation_errors() ?>
-    </div>
-    <?php endif ?>
 </div>
