@@ -10,5 +10,6 @@ $config = array(
         'appVersion'    => 'Version 0.1',
         'defaultLayout' => 'default',
         'loginRoute'    => '/auth/login',
+        'postLoginRoute'    => '/auth/postLogin',
         'logoutRoute'   => '/auth/logout'
     );

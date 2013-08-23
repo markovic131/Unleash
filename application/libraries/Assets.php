@@ -44,14 +44,14 @@ class Assets
 
         foreach ($CdnJavaScripts as $key => $value)
         {
-            $out .= '<script src="'.$value.'" async></script>'."\n";
+            $out .= '<script src="'.$value.'"></script>'."\n";
         }
 
         $localJavaScripts = static::$config[$type]['js'];
 
         foreach ($localJavaScripts as $key => $value)
         {
-            $out .= '<script src="' . static::$config['jsFolder'] . '/' . $value . '" async></script>'."\n";
+            $out .= '<script src="' . static::$config['jsFolder'] . '/' . $value . '"></script>'."\n";
         }
 
         return $out;

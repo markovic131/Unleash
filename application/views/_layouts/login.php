@@ -18,5 +18,25 @@
         </div>
         <!-- JavaScript -->
         <?=$this->assets->loadJs()?>
+        <script>
+            $(function(){
+                $('#loginButton').on('click',function(e){
+                    e.preventDefault();
+                    $.ajax({
+                        url: '/auth/postLogin',
+                        type: 'post',
+                        dataType : 'json',
+                        data: $('.form-signin').serialize(),
+                        success : function(data) {
+                            window.location.replace(data.redirect);
+                        },
+                        error : function(data) {
+                            $('#validationMessage').show().html(data.responseJSON.message);
+                        }
+                    });
+                    return false;
+                });
+            });
+        </script>
     </body>
 </html>

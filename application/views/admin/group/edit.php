@@ -1,7 +1,7 @@
 <div class="row">
     <div class="col-md-12">
         <div class="page-header">
-            <h2>Edit Group</h2>
+            <h2><?php echo lang('edit_group_title'); ?></h2>
         </div>
     </div>
     <div class="col-md-4">

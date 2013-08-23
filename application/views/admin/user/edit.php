@@ -1,7 +1,7 @@
 <div class="row">
     <div class="col-md-12">
         <div class="page-header">
-            <h2>Edit User</h2>
+            <h2><?php echo lang('edit_user_heading'); ?></h2>
         </div>
     </div>
     <div class="col-md-4">
@@ -26,14 +26,6 @@
             <div class="form-group">
                 <label for="phone">Phone</label>
                 <?php echo form_input('phone',set_value('phone',$user->phone),'class="form-control" placeholder="Phone" id="phone"') ?>
-            </div>
-            <div class="form-group">
-                <label for="email">Email Address</label>
-                <?php echo form_input('email',set_value('email',$user->email),'type="email" class="form-control" placeholder="Email" id="email"') ?>
-            </div>
-            <div class="form-group">
-                <label for="username">Username</label>
-                <?php echo form_input('username',set_value('username',$user->username),'class="form-control" placeholder="Username" id="username"') ?>
             </div>
             <div class="form-group">
                 <label for="password">Password</label>

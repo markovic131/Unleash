@@ -13,7 +13,7 @@ class User extends Admin_Controller
 {
     public function index()
     {
-        $this->data['users'] = $this->ion_auth->get_users();
+        $this->data['users'] = $this->ion_auth->users()->result();
     }
 
     public function create()
@@ -47,41 +47,38 @@ class User extends Admin_Controller
 
     public function edit($id = false)
     {
-        $this->data['user'] = $this->ion_auth->get_user($id);
+        $this->data['user'] = $this->ion_auth->user($id)->row();
 
-        $this->form_validation->set_rules('first_name', 'First Name', 'required|xss_clean');
-        $this->form_validation->set_rules('last_name', 'Last Name', 'required|xss_clean');
-        $this->form_validation->set_rules('company', 'Company', 'xss_clean');
-        $this->form_validation->set_rules('phone', 'Phone', 'xss_clean|numeric');
-        $this->form_validation->set_rules('email', 'Email Address', 'required|valid_email');
-        $this->form_validation->set_rules('username', 'Username', 'required|xss_clean');
-        $this->form_validation->set_rules('password', 'Password', 'min_length[' . $this->config->item('min_password_length', 'ion_auth') . ']|max_length[' . $this->config->item('max_password_length', 'ion_auth') . ']|matches[password_confirm]');
-        $this->form_validation->set_rules('password_confirm', 'Password Confirmation', '');
+        $this->form_validation->set_rules('first_name', $this->lang->line('edit_user_validation_fname_label'), 'required|xss_clean');
+        $this->form_validation->set_rules('last_name', $this->lang->line('edit_user_validation_lname_label'), 'required|xss_clean');
+        $this->form_validation->set_rules('phone', $this->lang->line('edit_user_validation_phone_label'), 'required|xss_clean');
+        $this->form_validation->set_rules('company', $this->lang->line('edit_user_validation_company_label'), 'required|xss_clean');
 
-        if($this->form_validation->run() AND ($this->data['user']->group != $this->ion_auth->get_config('admin_group')))
+        if($this->form_validation->run())
         {
-            $updateData = array(
+            $data = array(
                     'first_name' => $this->input->post('first_name'),
                     'last_name'  => $this->input->post('last_name'),
                     'company'    => $this->input->post('company'),
                     'phone'      => $this->input->post('phone'),
-                    'email'      => $this->input->post('email'),
-                    'username'   => $this->input->post('username')
                 );
 
-            if(strlen($this->input->post('password')))
+            if ($this->input->post('password') AND !$this->ion_auth->is_admin($this->data['user']->id))
             {
-                $updateData['password'] = $this->input->post('password');
+                $this->form_validation->set_rules('password', $this->lang->line('edit_user_validation_password_label'), 'required|min_length[' . $this->config->item('min_password_length', 'ion_auth') . ']|max_length[' . $this->config->item('max_password_length', 'ion_auth') . ']|matches[password_confirm]');
+                $this->form_validation->set_rules('password_confirm', $this->lang->line('edit_user_validation_password_confirm_label'), 'required');
+
+                $data['password'] = $this->input->post('password');
             }
 
-            if($this->ion_auth->update_user($this->input->post('id'), $updateData))
+            if($this->form_validation->run() AND $this->ion_auth->update($this->data['user']->id, $data))
             {
                 $this->flash->success('Successfully updated the record.');
                 redirect('admin/user');
             }
         }
 
-        if(!$this->data['user'] OR ($this->data['user']->group == $this->ion_auth->get_config('admin_group')))
+        if(!$this->data['user'] OR ($this->ion_auth->is_admin($this->data['user']->id)))
         {
             show_404();
         }
@@ -89,9 +86,9 @@ class User extends Admin_Controller
 
     public function delete($id = false)
     {
-        if($user = $this->ion_auth->get_user($id))
+        if($user = $this->ion_auth->user($id)->row())
         {
-            if($user->group != $this->ion_auth->get_config('admin_group'))
+            if(!$this->ion_auth->is_admin($user->id))
             {
                 $this->ion_auth->delete_user($id);
                 $this->flash->success('Successfully deleted the record.');

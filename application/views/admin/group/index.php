@@ -1,7 +1,7 @@
 <div class="row">
     <div class="col-md-12">
         <div class="page-header">
-            <h1>Groups <a href="/admin/group/create" class="btn btn-primary pull-right">Create Group</a></h1>
+            <h1><?php echo lang('index_groups_th'); ?> <a href="/admin/group/create" class="btn btn-primary pull-right">Create Group</a></h1>
         </div>
     </div>
     <div class="col-md-12">

@@ -4,11 +4,14 @@
         <div class="header">
             <ul class="nav nav-pills pull-right">
                 <?php if(!$this->ion_auth->logged_in()): ?>
-                    <li><a href="<?=config_item('loginRoute')?>">Member Login</a></li>
-                    <li><a href="<?=config_item('loginRoute')?>">Admin Login</a></li>
+                    <li><a href="<?=config_item('loginRoute')?>">Login</a></li>
                 <?php else: ?>
+                        <li><a href="/user/home">Members Area</a></li>
+                    <?php if ($this->ion_auth->is_admin()): ?>
+                        <li><a href="/admin/home">Administration Area</a></li>   
+                    <?php endif ?>
                     <li><a href="<?=config_item('logoutRoute')?>">Logout</a></li>
-                <?php endif; ?>
+                <?php endif ?>
             </ul>
             <h3 class="text-muted">Unleash</h3>
         </div>
@@ -20,13 +23,11 @@
 
             <p>The corresponding controller for this page is found at:</p>
             <code>application/controllers/page.php</code>
-            <br><br>
-            <?php if ($this->ion_auth->logged_in()): ?>
-                <p>You can access the <a href="/user/home">Members Area</a>.</p>
-            <?php endif ?>
-             <?php if ($this->ion_auth->is_admin()): ?>
-                <p>You can also access the <a href="/admin/home">Administration Area</a>.</p>
-            <?php endif ?>
+            <hr>
+            <p><strong>Member Access</strong></p>
+            <code>Username: user@user.com | Password: password</code>
+            <p><strong>Admin Access</strong></p>
+            <code>Username: admin@admin.com | Password: password</code>
         </div>
     </div>
 </div>

@@ -19,6 +19,12 @@ class Admin_Controller extends Authorized_Controller
         //Load administration specific libraries
         $this->load->library('flash');
 
+        //Load administration specific helpers
+        $this->load->helper('language');
+
+        //Load administration specific language files
+        $this->lang->load('auth');
+
         //Administration default layout
         $this->layout = LAYOUTS . 'admin';
     }
