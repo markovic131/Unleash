@@ -46,6 +46,7 @@ whatever you wanna do.
 * Layouts per access area (Public, Authorized, Admin)
 * Simple Flash notifications Library
 * Simple Assets Managnment Library
+* Unleash Helper - collection of useful functions
 * Boostrap 3.0 - CDN
 * jQuery - CDN
 
